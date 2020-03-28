@@ -81,7 +81,12 @@
     Sign In
   </button>
 
-  <button *ngIf="auth.authState$ | async" mat-raised-button color="primary">
+  <button
+    *ngIf="auth.authState$ | async"
+    routerLink="/pokemon"
+    mat-raised-button
+    color="primary"
+  >
     Launch
   </button>
 </div>

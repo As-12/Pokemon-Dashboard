@@ -3,6 +3,7 @@ import { BehaviorSubject } from "rxjs";
 import { LoginDialogComponent } from "./dialogs/login-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
 import { LogoutDialogComponent } from "./dialogs/logout-dialog.component";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root"
@@ -16,7 +17,13 @@ export class AuthenticationService {
   public readonly authState$ = this._loginState.asObservable();
   public readonly user$ = this._userName.asObservable();
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private router: Router) {
+    if (localStorage.getItem("user") != null) {
+      let user = localStorage.getItem("user");
+      this._userName.next(user);
+      this._loginState.next(true);
+    }
+  }
 
   LogIn(): void {
     // some validations here
@@ -30,6 +37,7 @@ export class AuthenticationService {
     diagRef.afterClosed().subscribe(result => {
       if (result) {
         this._userName.next(result.trim());
+        localStorage.setItem("user", result.trim());
         this._loginState.next(true);
         this.isLoggedIn = true;
       }
@@ -46,8 +54,10 @@ export class AuthenticationService {
     diagRef.afterClosed().subscribe(result => {
       if (result) {
         this._loginState.next(false);
+        localStorage.removeItem("user");
         this._userName.next("Guest");
         this.isLoggedIn = false;
+        this.router.navigate(["/"]);
       }
     });
   }

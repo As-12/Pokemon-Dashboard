@@ -15,7 +15,7 @@ import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatInputModule } from "@angular/material/input";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 import { MenuShellComponent } from "./menu-shell/menu-shell.component";
 
 import { MatButtonModule } from "@angular/material/button";
@@ -38,7 +38,6 @@ const sharedModules = [
   FormsModule,
   LayoutModule,
   RouterModule,
-  BrowserAnimationsModule,
   MatDialogModule,
   MatButtonModule
 ];
