@@ -43,7 +43,9 @@
         <mat-icon>menu</mat-icon>
       </button>
       <span class="menu-title">Pokemon Dashboard</span>
-      <span class="menu-user">Welcome {{ auth.user$ | async }} </span>
+      <span class="menu-user"
+        >Welcome {{ (auth.user$ | async).split(" ")[0] }}
+      </span>
 
       <button
         class="login-button"
