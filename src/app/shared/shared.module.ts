@@ -3,7 +3,6 @@ import { CommonModule } from "@angular/common";
 
 import { RouterModule } from "@angular/router";
 
-import { MatButtonModule } from "@angular/material/button";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
 import { LayoutModule } from "@angular/cdk/layout";
@@ -19,10 +18,12 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MenuShellComponent } from "./menu-shell/menu-shell.component";
 
+import { MatButtonModule } from "@angular/material/button";
+import { MatDialogModule } from "@angular/material/dialog";
+
 const sharedComponents = [MenuShellComponent];
 const sharedModules = [
   CommonModule,
-  MatButtonModule,
   MatToolbarModule,
   MatIconModule,
   MatSidenavModule,
@@ -37,7 +38,9 @@ const sharedModules = [
   FormsModule,
   LayoutModule,
   RouterModule,
-  BrowserAnimationsModule
+  BrowserAnimationsModule,
+  MatDialogModule,
+  MatButtonModule
 ];
 
 @NgModule({

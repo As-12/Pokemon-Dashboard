@@ -1,5 +1,8 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
+import { LoginDialogComponent } from "./dialogs/login-dialog.component";
+import { MatDialog } from "@angular/material/dialog";
+import { LogoutDialogComponent } from "./dialogs/logout-dialog.component";
 
 @Injectable({
   providedIn: "root"
@@ -12,19 +15,37 @@ export class AuthenticationService {
   public readonly authState$ = this._loginState.asObservable();
   public readonly user$ = this._userName.asObservable();
 
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
-  LogInAs(name: string): void {
+  LogIn(): void {
     // some validations here
-    if (!name) {
-      throw new Error("Invalid Login");
-    }
-    this._loginState.next(true);
-    this._userName.next(name);
+
+    const diagRef = this.dialog.open(LoginDialogComponent, {
+      width: "330px",
+      height: "300px",
+      data: {}
+    });
+
+    diagRef.afterClosed().subscribe(result => {
+      if (result) {
+        this._userName.next(result.trim());
+        this._loginState.next(true);
+      }
+    });
   }
 
-  Logout(): void {
-    this._loginState.next(false);
-    this._userName.next("Guest");
+  LogOut(): void {
+    const diagRef = this.dialog.open(LogoutDialogComponent, {
+      width: "330px",
+      height: "300px",
+      data: {}
+    });
+
+    diagRef.afterClosed().subscribe(result => {
+      if (result) {
+        this._loginState.next(false);
+        this._userName.next("Guest");
+      }
+    });
   }
 }

@@ -5,25 +5,33 @@
       <a mat-list-item routerLink="/" (click)="sidenav.close()">
         <mat-icon>close</mat-icon>Close Menu</a
       >
-      <a mat-list-item routerLink="/" (click)="sidenav.close()">
+      <a
+        mat-list-item
+        [href]="homePage"
+        target="_blank"
+        (click)="sidenav.close()"
+      >
         <mat-icon>home</mat-icon>Home Page</a
       >
-      <a mat-list-item routerLink="/" (click)="sidenav.close()">
+      <a
+        mat-list-item
+        [href]="gitHub"
+        target="_blank"
+        (click)="sidenav.close()"
+      >
         <mat-icon>settings_ethernet</mat-icon>GitHub</a
       >
       <a
         *ngIf="!(auth.authState$ | async)"
         mat-list-item
-        routerLink="/"
-        (click)="sidenav.close()"
+        (click)="sidenav.close(); auth.LogIn()"
       >
         <mat-icon>perm_identity</mat-icon> Log In</a
       >
       <a
         *ngIf="auth.authState$ | async"
         mat-list-item
-        routerLink="/"
-        (click)="sidenav.close()"
+        (click)="sidenav.close(); auth.LogOut()"
       >
         <mat-icon>perm_identity</mat-icon> Log Out</a
       >
@@ -42,7 +50,7 @@
         *ngIf="!(auth.authState$ | async)"
         mat-flat-button
         color="primary"
-        (click)="auth.LogInAs('John Corner')"
+        (click)="auth.LogIn()"
       >
         Log In
       </button>
@@ -52,7 +60,7 @@
         *ngIf="auth.authState$ | async"
         mat-flat-button
         color="primary"
-        (click)="auth.Logout()"
+        (click)="auth.LogOut()"
       >
         Log Out
       </button>
