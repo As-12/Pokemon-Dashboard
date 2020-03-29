@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthenticationService } from "../authentication.service";
+import { SeoService } from "../seo.service";
 
 @Component({
   selector: "app-home-page",
@@ -7,7 +8,9 @@ import { AuthenticationService } from "../authentication.service";
   styleUrls: ["./home-page.component.scss"]
 })
 export class HomePageComponent implements OnInit {
-  constructor(public auth: AuthenticationService) {}
+  constructor(public auth: AuthenticationService, private seo: SeoService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.seo.InjectTag();
+  }
 }

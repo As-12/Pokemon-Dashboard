@@ -9,7 +9,6 @@ import { AuthenticationService } from "src/app/authentication.service";
 export class MenuShellComponent implements OnInit {
   constructor(public auth: AuthenticationService) {}
 
-  homePage: string = "https://www.as12production.com";
   gitHub: string = "https://github.com/As-12/Pokemon-Dashboard";
   ngOnInit(): void {}
 }

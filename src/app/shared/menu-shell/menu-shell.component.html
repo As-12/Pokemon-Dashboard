@@ -5,12 +5,7 @@
       <a mat-list-item (click)="sidenav.close()">
         <mat-icon>close</mat-icon>Close Menu</a
       >
-      <a
-        mat-list-item
-        [href]="homePage"
-        target="_blank"
-        (click)="sidenav.close()"
-      >
+      <a mat-list-item routerLink="/" (click)="sidenav.close()">
         <mat-icon>home</mat-icon>Home Page</a
       >
       <a

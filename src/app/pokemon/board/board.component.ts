@@ -8,6 +8,7 @@ import { ConfirmDeleteDialogComponent } from "../dialogs/confirm-delete-dialog.c
 import { PokemonAPIService } from "../pokemon-api.service";
 import { BreakpointObserver } from "@angular/cdk/layout";
 import { map, shareReplay } from "rxjs/operators";
+import { SeoService } from "src/app/seo.service";
 
 @Component({
   selector: "app-board",
@@ -30,7 +31,8 @@ export class BoardComponent implements OnInit, OnDestroy {
     public boardService: BoardDataService,
     public pokeAPI: PokemonAPIService,
     private dialog: MatDialog,
-    public breakpointObserver: BreakpointObserver
+    public breakpointObserver: BreakpointObserver,
+    private seo: SeoService
   ) {}
 
   counter: number;
@@ -38,6 +40,7 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.cards = [];
     this.cards = this.boardService.getUserBoards();
     this.counter = this.cards.length;
+    this.seo.InjectTag();
   }
 
   createCard() {
