@@ -2,6 +2,8 @@
 
 ![Pokemon Deck](banner.png)
 
+[![pipeline status](https://gitlab.com/As-12/Pokemon-Dashboard/badges/master/pipeline.svg)](https://gitlab.com/As-12/Pokemon-Dashboard/-/commits/master)
+
 ## Overview
 
 This is my personal project to improve my front-end development and reactive programming skill.
