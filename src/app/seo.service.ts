@@ -25,7 +25,11 @@ export class SeoService {
       },
       { name: "og:title", content: title },
       { name: "og:description", content: description },
-      { name: "og:image", content: image },
+      {
+        name: "og:image",
+        content:
+          "https://raw.githubusercontent.com/As-12/Pokemon-Dashboard/master/src/assets/seo.png"
+      },
       { name: "description", content: description }
     ]);
   }
