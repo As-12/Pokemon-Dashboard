@@ -9,11 +9,11 @@ export class BoardDataService {
   constructor(private auth: AuthenticationService) {}
 
   getUserBoards() {
-    if (!this.auth.currentUser) {
+    if (!this.auth.userName) {
       throw new Error("Bug: user did not sign in");
     }
 
-    const key = `${this.auth.currentUser}-board`;
+    const key = `${this.auth.userName}-board`;
     if (localStorage.getItem(key) != null) {
       let json = localStorage.getItem(key);
       return JSON.parse(json);
@@ -23,7 +23,7 @@ export class BoardDataService {
   }
 
   persistBoard(cards: Pokemon[]) {
-    const key = `${this.auth.currentUser}-board`;
+    const key = `${this.auth.userName}-board`;
     localStorage.setItem(key, JSON.stringify(cards));
   }
 }
