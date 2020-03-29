@@ -9,19 +9,28 @@ import { Router } from "@angular/router";
   providedIn: "root"
 })
 export class AuthenticationService {
-  private _loginState = new BehaviorSubject<boolean>(false);
-  private _userName = new BehaviorSubject<string>("Guest");
-
-  public isLoggedIn = false;
+  private _loginState: BehaviorSubject<boolean>;
+  private _userName: BehaviorSubject<string>;
+  public readonly authState$;
+  public readonly user$;
+  public isLoggedIn: boolean;
+  public currentUser: string;
   // Expose the observable$ part of the _todos subject (read only stream)
-  public readonly authState$ = this._loginState.asObservable();
-  public readonly user$ = this._userName.asObservable();
 
   constructor(private dialog: MatDialog, private router: Router) {
+    this._userName = new BehaviorSubject<string>("Guest");
+    this._loginState = new BehaviorSubject<boolean>(false);
+    this.authState$ = this._loginState.asObservable();
+    this.user$ = this._userName.asObservable();
+    this.isLoggedIn = false;
+    this.currentUser = null;
+
     if (localStorage.getItem("user") != null) {
       let user = localStorage.getItem("user");
       this._userName.next(user);
       this._loginState.next(true);
+      this.isLoggedIn = true;
+      this.currentUser = user;
     }
   }
 
@@ -40,6 +49,7 @@ export class AuthenticationService {
         localStorage.setItem("user", result.trim());
         this._loginState.next(true);
         this.isLoggedIn = true;
+        this.currentUser = result.trim();
       }
     });
   }
@@ -57,6 +67,7 @@ export class AuthenticationService {
         localStorage.removeItem("user");
         this._userName.next("Guest");
         this.isLoggedIn = false;
+        this.currentUser = null;
         this.router.navigate(["/"]);
       }
     });

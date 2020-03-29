@@ -1,0 +1,75 @@
+@import "../../../mixins";
+
+.container {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.cards {
+  width: 100%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @include mq("tablet-wide") {
+    flex-direction: row;
+  }
+  .handle {
+    cursor: move;
+  }
+
+  .delete {
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.3);
+      transition: all 0.2s linear;
+    }
+  }
+  .buttons-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.2;
+  width: 350px;
+  border: 5px dashed gray;
+  margin: 0 10px;
+}
+
+.cdk-drag-animating {
+  transition: transform 300ms ease;
+}
+
+.cards.cdk-drop-list-dragging .cdk-drag {
+  transition: transform 300ms ease;
+}
+
+.new-button {
+  margin-top: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 5px gray dashed;
+  width: 200px;
+  padding: 32px;
+  height: 200px;
+  @include mq("tablet-wide") {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+    transition: all 0.2s linear;
+  }
+}

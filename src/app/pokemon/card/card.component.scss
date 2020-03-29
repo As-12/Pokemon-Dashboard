@@ -1,0 +1,20 @@
+.outer-card {
+  margin: 5px;
+  height: 100%;
+  max-width: 350px;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: row;
+  box-shadow: 5px 10px black;
+}
+
+img {
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+.card-container {
+  display: flex;
+  flex-direction: column;
+}

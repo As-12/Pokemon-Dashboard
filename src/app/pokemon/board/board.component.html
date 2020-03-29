@@ -1,1 +1,36 @@
-<p>board works!</p>
+<div class="container">
+  <h1>Your Pokemon Deck</h1>
+
+  <div
+    cdkDropList
+    class="cards"
+    [cdkDropListOrientation]="
+      (isTabletWide$ | async) ? 'horizontal' : 'vertical'
+    "
+    (cdkDropListDropped)="drop($event)"
+  >
+    <app-card
+      cdkDrag
+      *ngFor="let card of cards; let i = index"
+      [card]="card"
+      (titleChange)="titleChanged($event, i)"
+    >
+      <div class="buttons-container">
+        <mat-icon cdkDragHandle class="handle">drag_indicator</mat-icon>
+        <mat-icon class="delete" (click)="deleteCard(i)">delete</mat-icon>
+      </div>
+    </app-card>
+
+    <div *ngIf="cards.length < 5" class="new-button">
+      <button
+        [disabled]="addButton"
+        mat-raised-button
+        color="accent"
+        cdkDragDisabled
+        (click)="createCard()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

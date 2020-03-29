@@ -2,7 +2,7 @@
   <mat-sidenav #sidenav [mode]="'over'" fixedInViewport>
     <mat-toolbar>{{ auth.user$ | async }}</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/" (click)="sidenav.close()">
+      <a mat-list-item (click)="sidenav.close()">
         <mat-icon>close</mat-icon>Close Menu</a
       >
       <a
@@ -42,9 +42,9 @@
       <button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <span class="menu-title">Pokemon Dashboard</span>
+      <span class="menu-title">Pokemon Cards</span>
       <span class="menu-user"
-        >Welcome {{ (auth.user$ | async).split(" ")[0] }}
+        >Welcome {{ ((auth.user$ | async)?.split(" "))[0] }}
       </span>
 
       <button

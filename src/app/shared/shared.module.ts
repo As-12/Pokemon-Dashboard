@@ -20,6 +20,7 @@ import { MenuShellComponent } from "./menu-shell/menu-shell.component";
 
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule } from "@angular/material/dialog";
+import { HttpClientModule } from "@angular/common/http";
 
 const sharedComponents = [MenuShellComponent];
 const sharedModules = [
@@ -39,7 +40,8 @@ const sharedModules = [
   LayoutModule,
   RouterModule,
   MatDialogModule,
-  MatButtonModule
+  MatButtonModule,
+  HttpClientModule
 ];
 
 @NgModule({
